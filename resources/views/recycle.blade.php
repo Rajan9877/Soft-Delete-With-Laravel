@@ -43,7 +43,7 @@
           <tr>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            <td><button type="button" data-datac="{{$user->id}}" class="btn btn-success btn-sm">Restore User</button><button type="button" data-datac="{{$user->id}}" class="permanent-delete btn-danger btn-sm">Permanent Delete User</button></td>
+            <td><button type="button" data-datac="{{$user->id}}" class="restore btn btn-success btn-sm">Restore User</button><button type="button" data-datac="{{$user->id}}" class="permanent-delete btn btn-danger btn-sm">Permanent Delete User</button></td>
           </tr>
           @endforeach
         </tbody>
@@ -51,7 +51,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
-        $(document).on('click', '.btn', function() {
+        $(document).on('click', '.restore', function() {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     var id = $(this).attr("data-datac");
 
@@ -87,7 +87,7 @@ function fetchUsers() {
         success: function(data) {
             $('tbody').html('');
             for (var i = 0; i < data.users.length; i++) {
-                $('tbody').append('<tr><td>' + data.users[i].name + '</td><td>' + data.users[i].email + '</td><td><button type="button" data-datac="' + data.users[i].id + '" class="btn btn-success btn-sm">Restore User</button><button type="button" data-datac="' + data.users[i].id + '" class="btn-danger btn-sm permanent-delete">Permanent Delete User</button></td></tr>');
+                $('tbody').append('<tr><td>' + data.users[i].name + '</td><td>' + data.users[i].email + '</td><td><button type="button" data-datac="' + data.users[i].id + '" class="restore btn btn-success btn-sm">Restore User</button><button type="button" data-datac="' + data.users[i].id + '" class="btn-danger btn-sm permanent-delete">Permanent Delete User</button></td></tr>');
             }
         },
         error: function(xhr, status, error) {
@@ -124,6 +124,6 @@ $(document).on('click', '.permanent-delete', function() {
     });
 });
 
-            </script>
+</script>
 </body>
 </html>
